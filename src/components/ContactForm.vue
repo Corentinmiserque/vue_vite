@@ -1,21 +1,35 @@
-<script setup>
-</script>
-
 <template>
-    <div>
-      <h1>Contact</h1>
+  <div>
+    <h1>Contact</h1>
+    
+    <form @submit.prevent="submitForm">
+      <label for="name">Nom:</label>
+      <input type="text" v-model="newContact.name" id="name" >
       
-      <form @submit.prevent="submitForm">
-        <label for="name">Nom:</label>
-        <input type="text" id="name"  required>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-        
-        <label for="message">Message:</label>
-        <textarea id="message"  required></textarea>
-        
-        <button type="submit">Envoyer</button>
-      </form>
-    </div>
-  </template>
+      <label for="email">Email:</label>
+      <input type="email" id="email"v-model="newContact.email" >
+      
+      
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+</template>
+
+<script setup>
+//import
+import { ref } from 'vue';
+
+
+//code
+const newContact = ref({
+  name: "",
+  email:""
+})
+const emit = defineEmits(['soumettre'])
+
+const submitForm = () => {
+  alert('test');
+  emit('soumettre'), newContact.value
+};
+
+</script>
